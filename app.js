@@ -19,10 +19,30 @@ const express = require('express')
 const app = express()
 const port = 3000
 
-app.get('/', (req, res) => {
+
+// const greet = (req,res) => {
+//   res.send("Hello World !")
+// }
+
+// const term = (req,res,next) => {
+//   console.log("greetings !!!");
+//   next()
+// }
+
+// app.get('/',term, greet);
+
+app.get('/',(req, res) => {
   res.send('Hello World!')
 })
 
+app.use('/for',() => {
+  console.log("This is an Middleware example !!!");
+})
+
+app.get('/for', (req, res) => {
+  res.send('This is forward slash!')
+})
+
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+  console.log(`Port is running at:${port}`)
 })
