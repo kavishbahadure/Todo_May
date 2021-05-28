@@ -32,7 +32,7 @@ const port = 3000
 // app.get('/',term, greet);
 
 app.get('/',(req, res) => {
-  res.send('Hello World!')
+  res.json('Hello World!')
 })
 
 app.use('/for',() => {
@@ -40,7 +40,7 @@ app.use('/for',() => {
 })
 
 app.get('/for', (req, res) => {
-  res.send('This is forward slash!')
+  res.json('This is forward slash!')
 })
 
 app.listen(port, () => {
