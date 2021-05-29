@@ -16,6 +16,20 @@
 
 
 const express = require('express')
+
+const mongoose = require('mongoose')
+
+mongoose.connect('mongodb://localhost:27017/test', {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useUnifiedTopology:true
+})
+.then(() => {
+  console.log("DB IS CONNECTED");
+}).catch(() => {
+  console.log(("DB is not connected"));
+});
+
 const app = express()
 const port = 3000
 
@@ -30,6 +44,14 @@ const port = 3000
 // }
 
 // app.get('/',term, greet);
+
+
+const Animal = mongoose.model('Animal', { name: String });
+
+const dog = new Animal({ name: 'Shubham' });
+dog.save().then(() => console.log('bhaw-bhaw'));
+
+
 
 app.get('/',(req, res) => {
   res.json('Hello World!')
@@ -46,3 +68,4 @@ app.get('/for', (req, res) => {
 app.listen(port, () => {
   console.log(`Port is running at:${port}`)
 })
+
